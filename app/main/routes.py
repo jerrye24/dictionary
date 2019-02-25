@@ -15,7 +15,7 @@ import random
 def index():
     form = TranslationForm()
     if form.validate_on_submit():
-        word = Word(word=form.input_text.data, translate=form.output_text.data, user_id=int(current_user.get_id()))
+        word = Word(word=form.input_text.data.lower(), translate=form.output_text.data.lower(), user_id=int(current_user.get_id()))
         db.session.add(word)
         db.session.commit()
         flash('"{}" added to your dictionary'.format(word.word))
@@ -32,7 +32,7 @@ def translate_text():
 @bp.route('/my_dictionary/<letter>')
 @login_required
 def my_dictionary(letter):
-    my_words = current_user.word.filter(Word.word.startswith(letter)).all()
+    my_words = current_user.word.filter(Word.word.startswith(letter.lower())).all()
     return render_template('my_dictionary.html', title='My Dictionary', my_words=my_words, letter=letter)
 
 
@@ -60,4 +60,4 @@ def check_youself(word_count):
     if len(user_word_list) < word_count:
         word_count = len(user_word_list)
     word_list = random.sample(user_word_list, word_count)
-    return render_template('check_youself.html', word_list=word_list)
+    return render_template('check_youself.html',title='Check Youself', word_list=word_list)

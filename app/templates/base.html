@@ -17,9 +17,9 @@
            <li class="dropdown">
                <a href="" class="dropdown-toggle" data-toggle="dropdown">Check youself <span class="caret"></span></a>
                <ul class="dropdown-menu">
-                   <li><a href="">10 words</a></li>
-                   <li><a href="">20 words</a></li>
-                   <li><a href="">30 words</a></li>
+                   <li><a href="{{ url_for('main.check_youself', word_count=10) }}">10 words</a></li>
+                   <li><a href="{{ url_for('main.check_youself', word_count=20) }}">20 words</a></li>
+                   <li><a href="{{ url_for('main.check_youself', word_count=30) }}">30 words</a></li>
                </ul>
            </li>
        </ul>
@@ -62,6 +62,16 @@
             }).fail(function() {
                 $(destElem).val('Error: Could not contact server.');
             });
+        }
+
+        function check_youself(hidden_elem, check_elem, button) {
+            var hidden_word = $(hidden_elem).val()
+            var check_word = $(check_elem).val()
+            if (hidden_word == check_word) {
+                $(button + ' span').removeClass().addClass('glyphicon glyphicon-ok');
+            } else {
+                $(button + ' span').removeClass().addClass('glyphicon glyphicon-remove');
+            }
         }
     </script>
 {% endblock %}
