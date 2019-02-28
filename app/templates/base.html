@@ -64,11 +64,13 @@
             });
         }
 
-        function check_youself(hidden_elem, check_elem, button) {
+        function change_button_icon(hidden_elem, check_elem, button) {
             var hidden_word = $(hidden_elem).val()
             var check_word = $(check_elem).val()
             if (hidden_word == check_word) {
                 $(button + ' span').removeClass().addClass('glyphicon glyphicon-ok');
+            } else if (check_word == '') {
+                $(button + ' span').removeClass().addClass('glyphicon glyphicon-question-sign');
             } else {
                 $(button + ' span').removeClass().addClass('glyphicon glyphicon-remove');
             }

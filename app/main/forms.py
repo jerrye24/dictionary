@@ -17,4 +17,13 @@ class TranslationForm(FlaskForm):
 
 class SearchWordForm(FlaskForm):
     search_word = StringField('Search word', validators=[DataRequired()])
-    search = SubmitField('Go')
+    submit = SubmitField('Go')
+
+
+class EditWordForm(FlaskForm):
+    word = StringField('Word', validators=[DataRequired()])
+    translate = StringField('Translation', validators=[DataRequired()])
+    sentence = TextAreaField('Use in sentence')
+    comment = TextAreaField('Your comment')
+    submit = SubmitField('Save in my Dictionary')
+

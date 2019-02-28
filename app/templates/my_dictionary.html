@@ -19,11 +19,11 @@
             <th></th>
         </tr>
         {% for word in my_words %}
-        <tr>
+        <tr onclick="location.href = `{{url_for('main.edit_word', id=word.id)}}`">
             <td class="text-info">{{ word.word }}</td>
             <td>{{ word.translate }}</td>
-            <td>{% if word.sentence %}{{ word.sentence }}{% else %}<a href="" class="btn btn-default btn-xs">Add</a>{% endif %}</td>
-            <td>{% if word.comment %}{{ word.comment }}{% else %}<a href="" class="btn btn-default btn-xs">Add</a>{% endif %}</td>
+            <td>{% if word.sentence %}{{ word.sentence }}{% else %}{% endif %}</td>
+            <td>{% if word.comment %}{{ word.comment }}{% else %}{% endif %}</td>
             <td><a href="{{ url_for('main.delete_word', id=word.id) }}" class="btn btn-danger btn-xs">Del</a></td>
         </tr>
         {% endfor %}
